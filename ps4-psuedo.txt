@@ -1,0 +1,46 @@
+Your algorithms should be plain English explanations for the steps your program will take to solve these problems.
+
+
+
+Write out your algorithm for Problem 2 here(single_level_caesar_cipher_decrption):
+
+
+
+
+1. set the maximum number of real words found to 0
+2. set the best shift to 0
+3. for each possible shift from 0 to 27:
+4. shift the entire text by this shift
+5. split the text up into a list of the individual words.
+6. count the number of valid words in this list.
+7. if this number if valid words is more than the maximum number of real words, then
+8. record the number of valid words.
+9. set the best shift to the current shift
+10. increment the current possible shift by 1. Repeat the loop starting at 3.
+11. return the best shift.
+
+
+Write out your algorithm for Problem 4 here(multilevel_caesar_cipher_decrption):
+
+1. for every possible shift from 0 to 27:
+2. shift the text after starting poing.
+3. set s to be(the text before starting point) concatenated with (the text shifted)
+4. look for spaces beginning at the location specified by the start parameter
+5. if there was a space found and the characters from the start location to the location where the space
+was found form a valid word,then
+6. we recursively run this same algorithm on the same text, but starting at the location where the space
+was found(+1).
+7. if this recursive call to the function produces a list of tuples, then that means one of the recursive
+calls found the last word properly and we simply prepend a tuple with the start parameter and the current
+shift tried to the list and return it.
+8. if this recursive call to the function produces None, then that means that there was not combination of
+shifts and positions found that could produce a valid word at the end, so the error in the shift must either
+be in the current call to the function, or an earlier call. Continue trying all possible shifts
+9. if there was not a space found and the characters from the start location to the end of the string form
+a word, then that means we have found a valid shift on this call, so return a list containing a tuple
+containing the start parameter and the current shift.
+10. if there was not a space found and the characters from the start location to the end of the string do
+not form a word, then we need to try another shift in this call.
+
+11.if we exhaust all possible shifts and still find no solution from other recursive calls to this function,
+then that means our start position or a previous shift, is incorrect. Return None.
